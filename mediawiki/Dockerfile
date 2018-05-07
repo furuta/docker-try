@@ -1,10 +1,12 @@
 FROM		centos:centos7
 MAINTAINER	Tomohoiro Furuta
 ENV			container docker
-RUN			yum update -y && yum clean all
-RUN			yum swap -y fakesystemd systemd && yum clean all
-RUN			yum install -y epel-release && yum clean all
-RUN			yum install -y iproute && yum clean all
+RUN			yum -y update && yum clean all
+RUN			yum -y swap fakesystemd systemd && yum clean all
+RUN			yum -y install epel-release && yum clean all
+RUN			yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm && yum clean all
+RUN			yum -y install --enablerepo=remi,remi-php71 php php-devel php-mbstring php-pdo php-gd php-xml php-mcrypt httpd openssh-clients && yum clean all
+RUN			yum -y install iproute && yum clean all
 RUN			systemctl enable httpd
 RUN			mkdir -p /var/www/html/wiki
 #WORKDIR		/var/www/html/wiki

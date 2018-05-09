@@ -1,0 +1,8 @@
+wordpress:
+  image: wordpress:latest
+  links:
+    - db:mysql
+db:
+  image: mariadb:latest
+  environment:
+    MYSQL_ROOT_PASSWORD: password123
